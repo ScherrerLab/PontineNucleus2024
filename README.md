@@ -4,7 +4,7 @@ This is a repository for code used in the publication Chen et al. 2024 entitled 
 
 # single-cell RNA-seq
   Code for scRNA-seq:
-  * `DSSeurat2023.R` - This file contains R functions used in the primary scRNA-seq analysis pipeline.
+  * `DSSeurat_functions.R` - This file contains R functions used in the primary scRNA-seq analysis pipeline.
   * `PN_clustering2023.R` - This file contains the complete R code to cluster cells and generate plots used for Chen et al. 2024 from raw cell x gene matrices.
 
   
