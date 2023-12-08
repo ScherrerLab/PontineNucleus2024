@@ -1,6 +1,6 @@
 # PontineNucleus2023
 
-This is a repository for code used in the publication Chen et al. 2024 entitled Neural circuit basis of placebo pain relief". 
+This is a repository for code used in the publication Chen et al. 2024 entitled "Neural circuit basis of placebo pain relief". 
 
 # single-cell RNA-seq
   Code for scRNA-seq:
