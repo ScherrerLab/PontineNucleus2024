@@ -37,25 +37,10 @@ rownames(datamat2)=genes
 colnames(datamat2)=cells2
 df1=rowsum(datamat,rownames(datamat))
 df2=rowsum(datamat2,rownames(datamat2))
-df3=read.table('PN.smartseq.counts.txt',header=T,sep='\t',row.names=1)
-features=read.table('features.tsv')
-genes3=c()
-for (i in 1:length(rownames(df3))){
-	j=rownames(df3)[i]
-	if (j %in% features$V1) {
-	k=features[which(features$V1==j),2]
-	genes3=c(genes3,k)
-	} else {
-	genes3=c(genes3,j)
-	}
-}
-df3=as.matrix(df3)
-rownames(df3)=genes3
-df3=rowsum(df3,rownames(df3))#rownames are ensembl names, convert to gene IDs
+
 
 s1<-CreateSeuratObject(counts=df1,min.features=200,min.cells=5)
 s2<-CreateSeuratObject(counts=df2,min.features=200,min.cells=5)
-s3<-CreateSeuratObject(counts=df3,min.features=200,min.cells=5)
 
 s1[['percent.mt']] <- PercentageFeatureSet(s1, pattern='^mt-') #max 9.837%
 s1@meta.data$orig.ident='PN1'
@@ -536,6 +521,8 @@ save.image('AH_thrumarkers.RData')
 #prep
 mat=goodonly@assays$RNA@counts
 ss=readRDS('/pine/scr/k/y/kylius0/scherrer/Allen_SSData/AllenPons/PONS_PG/PGthruMarkers.rds')
+ss=read.csv('PG_counts.csv',header=T,row.names=1)
+ss = CreateSeuratObject(ss)
 ss@meta.data$orig.ident='SS'
 nfeatcell=colSums(mat!=0)#get num features for each cell
 #calculate point with largest 'jump' in num genes/cell as feature cutoff
